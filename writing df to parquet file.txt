@@ -1,0 +1,15 @@
+Writing dataframe to parquet file:
+
+newfilepath = userhome + "/pageviews_by_second.parquet"
+df.write                       # Our DataFrameWriter
+  .option("compression", "snappy") # One of none, snappy, gzip, and lzo
+  .mode("overwrite")               # Replace existing files
+  .parquet(newfilepath)               # Write DataFrame to Parquet files
+
+display(
+  dbutils.fs.ls(newfilepath)
+)
+
+display(
+  spark.read.parquet(fileName)
+)

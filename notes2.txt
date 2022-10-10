@@ -1,0 +1,39 @@
+CREATE TABLE usertable
+(
+YCSB_KEY varchar(255) NOT NULL,
+FIELD0 varchar(100) NOT NULL, 
+FIELD1 varchar(100) NOT NULL, 
+FIELD2 varchar(100) NOT NULL, 
+FIELD3 varchar(100) NOT NULL, 
+FIELD4 varchar(100) NOT NULL, 
+FIELD5 varchar(100) NOT NULL, 
+FIELD6 varchar(100) NOT NULL, 
+FIELD7 varchar(100) NOT NULL, 
+FIELD8 varchar(100) NOT NULL, 
+FIELD9 varchar(100) NOT NULL
+CONSTRAINT pk_usertable PRIMARY KEY NONCLUSTERED HASH (YCSB_KEY) WITH (BUCKET_COUNT = 100000000)
+)
+WITH (MEMORY_OPTIMIZED = ON);
+
+CREATE TABLE CaptureDDLEvents
+(
+    EventDate    DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    EventType    NVARCHAR(100),
+    EventDDL     NVARCHAR(MAX),
+    EventXML     XML,
+    DatabaseName NVARCHAR(255),
+    SchemaName   NVARCHAR(255),
+    ObjectName   NVARCHAR(255),
+    HostName     VARCHAR(64),
+    IPAddress    VARCHAR(48),
+    ProgramName  NVARCHAR(255),
+    LoginName    NVARCHAR(255)
+);
+databricks--> 4 to 5 transformations, intercallable
+adf-->join
+dataflow should have merge,join,etc
+foreach activity
+push data to sql database
+databricks code in pyspark
+email alert
+store in datalake for modelling
